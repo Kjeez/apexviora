@@ -64,6 +64,10 @@ button { cursor: pointer; }
   from { left: -100%; }
   to { left: 200%; }
 }
+@keyframes pinFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-6px); }
+}
 
 /* ─── Scroll Reveal Animation Classes ─── */
 .anim-fade-up, .anim-slide-right, .anim-slide-left { opacity: 0; will-change: transform, opacity; }
@@ -222,7 +226,7 @@ h2 span { color: var(--green); }
 .pin-pulse-ring.ring-2 { width: 50px; height: 50px; background: none; border: 1px solid rgba(13,107,67,0.2); animation: pulseRingOuter 2.5s ease-in-out infinite; }
 .pin-dot { position: absolute; width: 14px; height: 14px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-radius: 50%; background: var(--green); box-shadow: 0 0 10px rgba(13,107,67,0.4); }
 .pin-dot-core { position: absolute; width: 6px; height: 6px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-radius: 50%; background: #fff; }
-.pin-marker { position: absolute; left: 50%; bottom: calc(50% + 14px); transform: translateX(-50%); background: var(--green); width: 22px; height: 26px; border-radius: 12px 12px 12px 0; display: grid; place-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border: 2px solid #fff; }
+.pin-marker { position: absolute; left: 50%; bottom: calc(50% + 14px); transform: translateX(-50%); background: var(--green); width: 22px; height: 26px; border-radius: 12px 12px 12px 0; display: grid; place-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border: 2px solid #fff; animation: pinFloat 2.5s ease-in-out infinite; }
 .pin-label { position: absolute; top: 50%; white-space: nowrap; font-size: 11px; font-weight: 700; color: var(--dark); transform: translateY(-50%); background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 4px; backdrop-filter: blur(4px); }
 .pin-label.right { left: calc(50% + 14px); }
 .pin-label.left { right: calc(50% + 14px); }
@@ -285,11 +289,61 @@ h2 span { color: var(--green); }
 @media(max-width: 600px) {
   .container { width: calc(100% - 30px); }
   .hero h1 { font-size: 34px; }
-  .hero-actions { flex-direction: column; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
   .hero-bottom-bar { display: none; }
   .checks { grid-template-columns: 1fr; }
+  
   .product-grid { grid-template-columns: 1fr; }
-  .industries-grid { grid-template-columns: repeat(2, 1fr); }
-  .location-cards { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; gap: 14px; }
+  .product-card { flex-direction: row; text-align: left; padding: 12px; gap: 16px; align-items: center; }
+  .product-img-wrapper { height: 90px; width: 90px; flex-shrink: 0; margin-bottom: 0; }
+  .product-card h3 { font-size: 14px; margin-bottom: 4px; }
+  .product-card p { font-size: 11px; margin: 0; }
+  .product-icon { width: 24px; height: 24px; }
+  .product-icon svg { width: 12px; height: 12px; }
+
+  .industries-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .ind-card { padding: 16px 10px; }
+  
+  .sustainability-cards { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .sus-body { padding: 10px; }
+  .sus-img { height: 80px; }
+  .sus-body strong { font-size: 11px; }
+  .sus-body p { font-size: 9px; line-height: 1.3; }
+
+  .location-cards { grid-template-columns: 1fr; gap: 12px; }
+  .location-card { padding: 14px; }
+
+  /* Mobile Contact Form & Footer */
+  .mobile-only { display: block; }
+  .desktop-only { display: none !important; }
+  
+  .mobile-contact-form { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 12px; font-weight: 500; color: var(--dark); }
+  .form-group label span { color: #d9534f; }
+  .form-control { border: 1px solid #e1e4e8; padding: 12px 14px; border-radius: 6px; font-size: 13px; font-family: inherit; background: #fff; }
+  .checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-top: 5px; }
+  .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); cursor: pointer; }
+  .form-submit-btn { margin-top: 10px; width: 100%; justify-content: center; font-size: 14px; }
+
+  .contact.section-dark-img { background: var(--bg); padding: 60px 0; }
+  .contact-overlay { display: none; }
+  .contact-intro p:not(.eyebrow), .contact-intro h2, .contact-intro .eyebrow { color: var(--dark); }
+  .contact-intro p:not(.eyebrow) { color: var(--muted); }
+  .contact-intro h2 span { color: var(--green); }
+
+  .footer { padding-top: 60px; }
+  .footer-tagline { color: rgba(255,255,255,0.7); font-size: 11px; margin-top: 12px; }
+  .footer-details-mobile { display: flex; flex-direction: column; gap: 15px; margin: 30px 0; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
+  .footer-details-mobile a, .footer-details-mobile p { display: flex; align-items: flex-start; gap: 12px; color: rgba(255,255,255,0.8); font-size: 12px; line-height: 1.5; margin: 0; }
+  .footer-links { display: none; }
+  .footer-top { padding-bottom: 0; border-bottom: none; }
+  .footer-bottom { flex-direction: column; gap: 14px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+}
+
+/* Hide mobile-specific elements on desktop */
+@media(min-width: 601px) {
+  .mobile-contact-form { display: none; }
+  .mobile-only { display: none !important; }
 }

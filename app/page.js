@@ -131,10 +131,10 @@ function IndiaMap() {
   }, []);
 
   const pins = [
-    { id: 'faridabad', top: '27%', left: '55%', label: 'Faridabad', labelPos: 'right' },
-    { id: 'meerut',    top: '25%', left: '56%', label: 'Meerut',    labelPos: 'left' },
-    { id: 'jaipur',    top: '32%', left: '46%', label: 'Jaipur',    labelPos: 'left' },
-    { id: 'pune',      top: '55%', left: '32%', label: 'Pune',      labelPos: 'right' },
+    { id: 'meerut',    top: '29%', left: 'calc(48% - 50px)', label: 'Meerut',    labelPos: 'right' },
+    { id: 'faridabad', top: '32%', left: 'calc(47% - 50px)', label: 'Faridabad', labelPos: 'right' },
+    { id: 'jaipur',    top: '40%', left: 'calc(39% - 50px)', label: 'Jaipur',    labelPos: 'left' },
+    { id: 'pune',      top: '61%', left: 'calc(34% - 50px)', label: 'Pune',      labelPos: 'right' },
   ];
 
   return (
@@ -182,11 +182,7 @@ export default function Home() {
       <header className={`nav-wrap ${scrolled ? 'nav-scrolled' : ''}`}>
         <nav className="nav container">
           <a className="logo" href="#home" onClick={closeMenu}>
-            <div className="logo-icon"><Icon type="leaf" size={20} color={GREEN} /></div>
-            <div>
-              <strong>APEX<span>VIORA</span></strong>
-              <small>PACK VENTURES LLP</small>
-            </div>
+            <img src="/images/logo.png" alt="ApexViora" style={{ height: '40px', width: 'auto' }} />
           </a>
           <button className="mobile-menu" aria-label="Toggle menu" onClick={() => setMenuOpen(!menuOpen)}>
             <Icon type={menuOpen ? 'close' : 'menu'} />
@@ -202,7 +198,7 @@ export default function Home() {
 
       {/* ─── Hero ─── */}
       <section id="home" className="hero" ref={heroRef}>
-        <div className="hero-media blank-image" aria-label="Hero warehouse image placeholder" />
+        <div className="hero-media" style={{ backgroundImage: "url('/images/hero.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }} aria-label="Hero warehouse image" />
         <div className="hero-overlay" />
         <div className={`container hero-content ${heroVisible ? 'reveal' : ''}`}>
           <p className="eyebrow anim-fade-up" style={{ '--delay': '0.1s' }}>PACKAGING SOLUTIONS FOR A STRONGER TOMORROW</p>
@@ -212,9 +208,6 @@ export default function Home() {
             <a className="btn btn-green" href="#contact">Request a Quote <Icon type="arrow" size={17} /></a>
             <a className="btn btn-outline" href="#products">Explore Our Products</a>
           </div>
-        </div>
-        <div className="hero-bottom-bar">
-          <div className="container">PROTECT • SECURE • STRENGTHEN</div>
         </div>
       </section>
 
@@ -243,7 +236,7 @@ export default function Home() {
       {/* ─── About ─── */}
       <section id="about" className="about section-white" ref={aboutRef}>
         <div className={`container about-grid ${aboutVisible ? 'reveal' : ''}`}>
-          <div className="about-image blank-image anim-slide-right">
+          <div className="about-image anim-slide-right" style={{ backgroundImage: "url('/images/about.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="image-badge"><strong>15+</strong><span>Years of trusted<br />packaging expertise</span></div>
           </div>
           <div className="about-content anim-slide-left">
@@ -274,7 +267,7 @@ export default function Home() {
           <div className="product-grid">
             {products.map((product, i) => (
               <article className={`product-card anim-fade-up`} key={product.title} style={{ '--delay': `${i * 0.1}s` }}>
-                <div className={`product-image blank-image`} />
+                <div className="product-image" style={{ backgroundImage: `url('/images/product_${i+1}.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
                 <div className="product-body">
                   <h3>{product.title}</h3>
                   <p>{product.description}</p>
@@ -320,21 +313,21 @@ export default function Home() {
           </div>
           <div className="sustainability-cards anim-slide-left">
             <div className="sus-card">
-              <div className="sus-img blank-image" />
+              <div className="sus-img" style={{ backgroundImage: "url('/images/sus_1.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div className="sus-body">
                 <strong>Wood</strong>
                 <p>Durable, reusable and export-ready packaging.</p>
               </div>
             </div>
             <div className="sus-card">
-              <div className="sus-img blank-image" />
+              <div className="sus-img" style={{ backgroundImage: "url('/images/sus_2.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div className="sus-body">
                 <strong>Pulp</strong>
                 <p>Fibre-based protective packaging options.</p>
               </div>
             </div>
             <div className="sus-card">
-              <div className="sus-img blank-image" />
+              <div className="sus-img" style={{ backgroundImage: "url('/images/sus_3.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div className="sus-body">
                 <strong>Paper</strong>
                 <p>Edge protection and load-stabilizing solutions.</p>
@@ -374,8 +367,47 @@ export default function Home() {
             <p className="eyebrow">GET IN TOUCH</p>
             <h2>Let's Build a Stronger,<br /><span>Greener Tomorrow Together.</span></h2>
             <p>Tell us about your requirements and our team will get back to you with a customised solution.</p>
+            
+            <form className="mobile-contact-form">
+              <div className="form-group">
+                <label>First Name <span>*</span></label>
+                <input type="text" className="form-control" placeholder="Enter your first name" />
+              </div>
+              <div className="form-group">
+                <label>Last Name <span>*</span></label>
+                <input type="text" className="form-control" placeholder="Enter your last name" />
+              </div>
+              <div className="form-group">
+                <label>Company Name <span>*</span></label>
+                <input type="text" className="form-control" placeholder="Your company name" />
+              </div>
+              <div className="form-group">
+                <label>Email Address <span>*</span></label>
+                <input type="email" className="form-control" placeholder="you@company.com" />
+              </div>
+              <div className="form-group">
+                <label>Phone Number <span>*</span></label>
+                <input type="tel" className="form-control" placeholder="+91 98739 35865" />
+              </div>
+              <div className="form-group">
+                <label>Product Interest <span>*</span></label>
+                <div className="checkbox-group">
+                  <label className="checkbox-item"><input type="checkbox" /> Wooden Pallets</label>
+                  <label className="checkbox-item"><input type="checkbox" /> Wooden Crates & Boxes</label>
+                  <label className="checkbox-item"><input type="checkbox" /> Pulp Packaging</label>
+                  <label className="checkbox-item"><input type="checkbox" /> Angle L Board</label>
+                  <label className="checkbox-item"><input type="checkbox" /> Clamp-Lock Solutions</label>
+                  <label className="checkbox-item"><input type="checkbox" /> Custom Packaging</label>
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Message <span>*</span></label>
+                <textarea className="form-control" placeholder="Tell us about your requirements..." rows={3}></textarea>
+              </div>
+              <button type="button" className="btn btn-green btn-large form-submit-btn">Submit Request <Icon type="arrow" size={17} /></button>
+            </form>
           </div>
-          <div className="contact-info anim-slide-left">
+          <div className="contact-info anim-slide-left desktop-only">
             <a className="btn btn-green btn-large" href="#contact">Request a Quote <Icon type="arrow" size={17} /></a>
             <div className="contact-details">
               <a href="tel:+919873935865"><Icon type="phone" size={18}/> +91 98739 35865 | +91 96505 77900</a>
@@ -388,13 +420,18 @@ export default function Home() {
       {/* ─── Footer ─── */}
       <footer className="footer section-dark">
         <div className="container footer-top">
-          <a className="logo" href="#home">
-            <div className="logo-icon"><Icon type="leaf" size={20} color={GREEN} /></div>
-            <div>
-              <strong>APEX<span>VIORA</span></strong>
-              <small>PACK VENTURES LLP</small>
+          <div className="footer-brand">
+            <a className="logo" href="#home">
+              <img src="/images/logo.png" alt="ApexViora" style={{ height: '40px', width: 'auto' }} />
+            </a>
+            <p className="footer-tagline mobile-only">Packaging Solutions for a Stronger Tomorrow</p>
+            
+            <div className="footer-details-mobile mobile-only">
+              <a href="tel:+919873935865"><Icon type="phone" size={16}/> +91 98739 35865 | +91 96505 77900</a>
+              <a href="mailto:apexviorapv@gmail.com"><Icon type="mail" size={16}/> apexviorapv@gmail.com</a>
+              <p><Icon type="pin" size={16}/> <span>Office No. 103, Second Floor, NIT-3,<br/>Faridabad, Haryana - 121001<br/>(Opp. Chimni Bai Dharamshala)</span></p>
             </div>
-          </a>
+          </div>
           <div className="footer-links">
             {['Home', 'About', 'Products', 'Industries', 'Sustainability', 'Locations', 'Contact'].map((item) => <a href={`#${item.toLowerCase()}`} key={item}>{item}</a>)}
           </div>
